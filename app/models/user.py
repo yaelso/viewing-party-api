@@ -45,6 +45,9 @@ class User(db.Model):
         db.Index("ix_email", "email")
     )
 
+    def __repr__(self):
+        return f"<User {self.username}"
+
     @classmethod
     def _optional_serialization_keys(cls):
         return ["created_at", "friendships", "blocked_users"]
