@@ -29,6 +29,7 @@ class User(db.Model):
         block_user: Blocks a user.
         unblock_user: Removes target user from blocked list.
     """
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
@@ -38,15 +39,12 @@ class User(db.Model):
     blocked_users = db.relationship("Relationship", foreign_keys="Relationship.user_id", backref=db.backref("blocked_by", lazy="joined"), lazy="dynamic")
 
     _serialization_keys = ["id", "username", "email", "password_hash"]
-    _deserialiation_keys = ["username", "email"]
+    _deserialization_keys = ["username", "email"]
 
     __table_args__ = (
         db.Index("ix_username", "username"),
         db.Index("ix_email", "email")
     )
-
-    def __repr__(self):
-        return f"<User {self.username}"
 
     @classmethod
     def _optional_serialization_keys(cls):
