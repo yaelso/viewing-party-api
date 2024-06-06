@@ -41,9 +41,13 @@ class User(db.Model):
     _deserialiation_keys = ["username", "email"]
 
     __table_args__ = (
-        db.Index('ix_username', 'username'),
-        db.Index('ix_email', 'email')
+        db.Index("ix_username", "username"),
+        db.Index("ix_email", "email")
     )
+
+    @classmethod
+    def _optional_serialization_keys(cls):
+        return ["created_at", "friendships", "blocked_users"]
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode("utf8")
