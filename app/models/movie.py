@@ -1,11 +1,11 @@
-from app import db
+# from app import db
 
-class Movie(db.Model):
-    """
-    A class to represent a single movie.
+# class Movie(db.Model):
+#     """
+#     A class to represent a single movie.
 
-    Attributes:
+#     Attributes:
 
-    Methods:
-    """
-    pass
+#     Methods:
+#     """
+#     pass
