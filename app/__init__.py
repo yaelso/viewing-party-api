@@ -17,6 +17,7 @@ def create_app(test_config=None):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["FEATURE_FLAGS"] = FEATURE_FLAGS
     app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_KEY")
+    app.config["JWT_TOKEN_LOCATION"] = ["headers"]
 
     jwt = JWTManager(app)
 
