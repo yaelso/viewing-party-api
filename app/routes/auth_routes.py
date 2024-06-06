@@ -39,4 +39,5 @@ def login():
         return jsonify({"message": "Invalid credentials"}), 402
 
     access_token = create_access_token(identity=user.id)
-    return jsonify(access_token=access_token), 200
+
+    return jsonify({"message": "Login successful", "access_token": access_token}, 200)
