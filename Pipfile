@@ -12,6 +12,8 @@ autopep8 = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 pytest-cov = "*"
+flask-jwt-extended = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 
