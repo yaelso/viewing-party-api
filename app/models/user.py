@@ -1,5 +1,6 @@
 from app import db, bcrypt
 from app.models.relationship import Relationship
+from app.models.role import Role
 
 class User(db.Model):
     """
@@ -11,6 +12,7 @@ class User(db.Model):
         email (str): User's email
         password_hash (str): Hash of user's password
         created_at (datetime): Timestamp for data integrity, audit trail, and analytics
+        role (enum): Identifies user role
         friendships (relationship): Collection of user friendships
         blocked_users (relationship): Collection of user blocks
 
@@ -35,6 +37,7 @@ class User(db.Model):
     email = db.Column(db.String, unique=True, nullable=False)
     password_hash = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=None)
+    role = db.Column(db.Enum(Role), nullable=False, default=Role.STANDARD)
     friendships = db.relationship("Relationship", foreign_keys="Relationship.user_id", backref=db.backref("user", lazy="joined"), lazy="dynamic")
     blocked_users = db.relationship("Relationship", foreign_keys="Relationship.user_id", backref=db.backref("blocked_by", lazy="joined"), lazy="dynamic")
 

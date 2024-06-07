@@ -1,8 +1,6 @@
-from app import db
+from enum import Enum
 
-class Role(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
-
-    def __repr__(self):
-        return f"<Role {self.name}>"
+class Role(Enum):
+    ADMIN = "admin"
+    MODERATOR = "moderator"
+    STANDARD = "standard"
